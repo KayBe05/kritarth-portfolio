@@ -319,8 +319,6 @@
             <div class="footer-bottom">
                 <p class="copyright">© 2025 Kritarth Bijalwann. All Rights Reserved.</p>
                 <div class="footer-bottom-links">
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="terms.html">Terms of Service</a>
                     <a href="contact.html">Contact</a>
                 </div>
             </div>
@@ -330,7 +328,6 @@
     <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Mobile Navigation Toggle
             const hamburger = document.querySelector('.hamburger');
             const navMenu = document.querySelector('.nav-menu');
             const navLinks = document.querySelectorAll('.nav-link');
@@ -340,13 +337,11 @@
                     hamburger.classList.toggle('active');
                     navMenu.classList.toggle('active');
 
-                    // Update ARIA attributes
                     const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
                     hamburger.setAttribute('aria-expanded', !expanded);
                 });
             }
 
-            // Close mobile menu when clicking on a nav link
             navLinks.forEach(link => {
                 link.addEventListener('click', function () {
                     hamburger.classList.remove('active');
@@ -355,21 +350,17 @@
                 });
             });
 
-            // Form validation
             const contactForm = document.getElementById('contactForm');
             const successMessage = document.getElementById('successMessage');
 
             if (contactForm) {
-                // Input focus effects
                 const inputs = contactForm.querySelectorAll('input, textarea');
 
                 inputs.forEach(input => {
-                    // Auto-focus label if field has value on page load
                     if (input.value.trim() !== '') {
                         input.classList.add('has-value');
                     }
 
-                    // Handle input events
                     input.addEventListener('focus', function () {
                         this.parentElement.classList.add('focused');
                     });
@@ -377,7 +368,6 @@
                     input.addEventListener('blur', function () {
                         this.parentElement.classList.remove('focused');
 
-                        // Validate on blur
                         validateField(this);
                     });
 
@@ -388,20 +378,16 @@
                     });
                 });
 
-                // Form validation function
                 function validateField(field) {
                     const parent = field.parentElement;
 
-                    // Reset error state
                     parent.classList.remove('error');
 
-                    // Required field validation
                     if (field.hasAttribute('required') && field.value.trim() === '') {
                         parent.classList.add('error');
                         return false;
                     }
 
-                    // Email validation
                     if (field.type === 'email' && field.value.trim() !== '') {
                         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                         if (!emailPattern.test(field.value)) {
@@ -413,11 +399,9 @@
                     return true;
                 }
 
-                // Form submission handling
                 contactForm.addEventListener('submit', function (e) {
                     e.preventDefault();
 
-                    // Validate all fields
                     let isValid = true;
                     const formFields = this.querySelectorAll('input, textarea');
 
@@ -428,7 +412,6 @@
                     });
 
                     if (!isValid) {
-                        // Scroll to first error
                         const firstError = this.querySelector('.error');
                         if (firstError) {
                             firstError.querySelector('input, textarea').focus();
@@ -436,32 +419,24 @@
                         return;
                     }
 
-                    // Form data collection
                     const formData = new FormData(this);
                     const formValues = Object.fromEntries(formData.entries());
 
-                    // Show loading state on button
                     const submitBtn = this.querySelector('.btn-submit');
                     const originalBtnText = submitBtn.innerHTML;
                     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
                     submitBtn.disabled = true;
 
-                    // Simulate form submission (replace with actual form submission in production)
                     setTimeout(() => {
-                        // In a real scenario, you would send this data to a server
                         console.log('Form submitted with values:', formValues);
 
-                        // Reset form
                         contactForm.reset();
 
-                        // Reset button
                         submitBtn.innerHTML = originalBtnText;
                         submitBtn.disabled = false;
 
-                        // Show success message with animation
                         successMessage.style.display = 'block';
 
-                        // Hide success message after 5 seconds
                         setTimeout(() => {
                             successMessage.style.opacity = '0';
                             successMessage.style.transform = 'translateY(-10px)';
@@ -476,7 +451,6 @@
                 });
             }
 
-            // Smooth scroll for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     const target = document.querySelector(this.getAttribute('href'));
@@ -492,7 +466,6 @@
                 });
             });
 
-            // Header scroll effect
             const header = document.getElementById('header');
 
             window.addEventListener('scroll', () => {
@@ -505,19 +478,15 @@
                 }
             });
 
-            // Interactive contact methods
             const contactMethods = document.querySelectorAll('.contact-method');
 
             contactMethods.forEach(method => {
                 method.addEventListener('click', function () {
-                    // Apply active state to clicked method
                     contactMethods.forEach(m => m.classList.remove('active'));
                     this.classList.add('active');
 
-                    // Get the contact method title
                     const methodTitle = this.querySelector('h4').textContent;
 
-                    // Auto-fill subject based on contact method
                     const subjectField = document.getElementById('subject');
 
                     if (subjectField) {
@@ -533,19 +502,16 @@
                                 break;
                         }
 
-                        // Trigger label animation
                         if (subjectField.value) {
                             subjectField.classList.add('has-value');
                         }
                     }
 
-                    // Scroll to form
                     document.getElementById('contact').scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
                     });
 
-                    // Focus first empty required field
                     setTimeout(() => {
                         const emptyField = document.querySelector('input[required]:not([value]), textarea[required]:not(:filled)');
                         if (emptyField) {
