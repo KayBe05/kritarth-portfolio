@@ -259,9 +259,9 @@ img {
   max-width: 1700px;
   width: 70%;
   border-radius: var(--radius-4xl);
-  margin: var(--space-2) var(--space-4);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin: var(--space-3) auto; 
   transition: all 0.3s ease-in-out;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 #header.scrolled {
@@ -294,7 +294,7 @@ img {
   font-size: 0.75rem;
   font-weight: 600;
   padding: 10px 5px;
-  color: var(--text-color);
+  color: var(--light-color);
   transition: all 0.3s ease;
   position: relative;
   text-transform: uppercase;
